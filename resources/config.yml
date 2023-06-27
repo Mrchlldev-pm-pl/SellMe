@@ -5,7 +5,7 @@
 # 1. BedrockEconomy
 # 2. Capital
 # 3. EconomyAPI
-economy-provider: BedrockEconomy
+economy-provider: EconomyAPI
 
 # DO NOT TOUCH IF YOU DONT KNOW WHAT YOU ARE DOING
 # BY DEFAULT SELECTOR ENTRY IS EMPTY
