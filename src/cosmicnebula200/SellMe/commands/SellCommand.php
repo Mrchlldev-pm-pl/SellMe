@@ -19,6 +19,9 @@ use Vecnavium\FormsUI\SimpleForm;
 class SellCommand extends BaseCommand
 {
 
+    public function getPermission(){
+    return null;
+    }
     protected function prepare(): void
     {
         $this->setPermission(
