@@ -11,7 +11,9 @@ use Vecnavium\FormsUI\SimpleForm;
 
 class AutoSellCommand extends BaseCommand
 {
-
+    public function getPermission(){
+    return null;
+    }
     protected function prepare(): void
     {
         $this->setPermission("sellme.command.autosell");
