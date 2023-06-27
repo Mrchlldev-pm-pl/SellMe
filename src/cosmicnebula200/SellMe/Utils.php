@@ -3,7 +3,7 @@
 namespace cosmicnebula200\SellMe;
 
 use pocketmine\item\Item;
-use pocketmine\item\ItemFactory;
+use pocketmine\item\LegacyStringToItemParser;
 use pocketmine\player\Player;
 
 class Utils
@@ -34,7 +34,8 @@ class Utils
     {
         $id = explode(":", $data)[0] ?? $data;
         $meta = explode(":", $data)[1] ?? 0;
-        $item = ItemFactory::getInstance()->get($id, $meta);
+        $idmeta = $id . ":" . $meta;
+        $item = LegacyStringToItemParser::getInstance()->parse($idmeta);
         return $item->getName();
     }
     
