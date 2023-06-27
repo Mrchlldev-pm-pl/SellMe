@@ -7,7 +7,7 @@ use cosmicnebula200\SellMe\commands\AutoSellCommand;
 use cosmicnebula200\SellMe\commands\SellCommand;
 use cosmicnebula200\SellMe\listeners\EventListener;
 use cosmicnebula200\SellMe\messages\Messages;
-use cosmicnebula200\SellMe\provider\BedrockEconomyProvider;
+
 use cosmicnebula200\SellMe\provider\CapitalEconomyProvider;
 use cosmicnebula200\SellMe\provider\EconomyAPIProvider;
 use cosmicnebula200\SellMe\provider\EconomyProvider;
@@ -42,7 +42,6 @@ class SellMe extends PluginBase
 
         $this->economyProvider = match (strtolower($this->getConfig()->get('economy-provider')))
         {
-            "bedrockeconomy" => new BedrockEconomyProvider(),
             "capital" => new CapitalEconomyProvider(),
             "economyapi" => new EconomyAPIProvider(),
             default => null
