@@ -3,7 +3,7 @@
 namespace cosmicnebula200\SellMe;
 
 use pocketmine\item\Item;
-use pocketmine\item\LegacyStringToItemParser;
+use pocketmine\item\StringToItemParser;
 use pocketmine\player\Player;
 
 class Utils
@@ -23,10 +23,10 @@ class Utils
 
     public static function getAmount(Item $item): int
     {
-        if (SellMe::$prices->getNested("prices.{$item->getId()}:{$item->getMeta()}") != false)
-            return (int)SellMe::$prices->getNested("prices.{$item->getId()}:{$item->getMeta()}");
-        if (SellMe::$prices->getNested("prices.{$item->getId()}") !== false)
-            return (int)SellMe::$prices->getNested("prices.{$item->getId()}");
+        if (SellMe::$prices->getNested("prices.{$item->getTypeId()}:{$item->getStateId()}") != false)
+            return (int)SellMe::$prices->getNested("prices.{$item->getTypeId()}:{$item->getStateId()}");
+        if (SellMe::$prices->getNested("prices.{$item->getTypeId()}") !== false)
+            return (int)SellMe::$prices->getNested("prices.{$item->getTypeId()}");
         return 0;
     }
 
@@ -35,7 +35,7 @@ class Utils
         $id = explode(":", $data)[0] ?? $data;
         $meta = explode(":", $data)[1] ?? 0;
         $idmeta = $id . ":" . $meta;
-        $item = LegacyStringToItemParser::getInstance()->parse($idmeta);
+        $item = StringToItemParser::getInstance()->parse($idmeta);
         return $item->getName();
     }
     
@@ -61,7 +61,7 @@ class Utils
             ));
             return;
         }
-        $string = $item->getMeta() == 0 ? "{$item->getId()}" : "{$item->getId()}:{$item->getMeta()}";
+        $string = $item->getStateId() == 0 ? "{$item->getTypeId()}" : "{$item->getTypeId()}:{$item->getStateId()}";
         SellMe::$prices->setNested("prices.$string", $price);
         SellMe::$prices->save();
         SellMe::$prices->reload();
